@@ -7,7 +7,7 @@ public class menucontroller : MonoBehaviour
     // Start is called before the first frame update
     public void LoadGame()
     {
-        SceneManager.LoadScene("OtherSceneName", LoadSceneMode.Additive);
+        SceneManager.LoadScene("menu", LoadSceneMode.Additive);
     }
 
 }
