@@ -167,6 +167,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sword: {fileID: 1262501049}
+--- !u!114 &514169994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 514169987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cacfb9ec69b4b64781cb56dad6e0220, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RG: {fileID: 682322697}
 --- !u!1 &682322696
 GameObject:
   m_ObjectHideFlags: 0
@@ -196,7 +209,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03ca356eb1055624ab5f3afbec0a5681, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flyweights: []
+  flyweights:
+  - items:
+    - {fileID: 4209216223322273726, guid: a9d12052ef6d2414598f99ce80f2a29d, type: 3}
+  - items:
+    - {fileID: 6833898064498870666, guid: d7c29c7a047321144aa4aedde79f12b4, type: 3}
+    - {fileID: 6833898064498870666, guid: d0bc2423a77bbb34bb7771ff91fc2bff, type: 3}
+    - {fileID: 8003523610005843648, guid: a1b4e567086839846988eb40b4734039, type: 3}
+  - items:
+    - {fileID: 1633723502923484671, guid: 32566f9a7d7d4974baa96a520f4864bc, type: 3}
+    - {fileID: 3471901735914841803, guid: 79b584f62cb340040964036524bfec39, type: 3}
+    - {fileID: 3156726675905930519, guid: 81976908bb7855b4a99b151a8641dd48, type: 3}
+  - items:
+    - {fileID: 6616986439634088549, guid: 25f812aafb52b2f43b7779d525971d49, type: 3}
+    - {fileID: 319285339354385407, guid: 5d665b0bc68c8be47b8cf45cf3b69fde, type: 3}
+    - {fileID: 3156726675905930519, guid: bfe50f05c124023488a8fbeb0d5d9d24, type: 3}
+  - items:
+    - {fileID: 254597720907404708, guid: 74a1b18dce3459047a10fb66bd33c71d, type: 3}
+    - {fileID: 2995128355383846822, guid: 901ad8f21a944564a9777f63b120e12c, type: 3}
+    - {fileID: 3156726675905930519, guid: a67afa22b0688af44922aba66300a233, type: 3}
+  - items:
+    - {fileID: 117926131315950436, guid: 480e7dfd9909b69478283424a4d9a529, type: 3}
+    - {fileID: 117926131315950436, guid: 606796349e6238f44ae500f30f100f38, type: 3}
+    - {fileID: 117926131315950436, guid: 7033ea14020dd6743ace8397c83825a8, type: 3}
+    - {fileID: 117926131315950436, guid: de88a1f8ae86b8f4d8726dd0c3dcad10, type: 3}
+    - {fileID: 117926131315950436, guid: e862164626dc60e47aac769e5455a564, type: 3}
+  - items:
+    - {fileID: 2160845830655550549, guid: 80ae18641579b6a46a66c67150e96656, type: 3}
+  - items:
+    - {fileID: 3632761402357677446, guid: e091db6d9bf6ccc46bcf4fb794bdeca0, type: 3}
+  - items:
+    - {fileID: 3632761402357677446, guid: e091db6d9bf6ccc46bcf4fb794bdeca0, type: 3}
+  - items:
+    - {fileID: 3632761402357677446, guid: e091db6d9bf6ccc46bcf4fb794bdeca0, type: 3}
+  - items:
+    - {fileID: 3632761402357677446, guid: e091db6d9bf6ccc46bcf4fb794bdeca0, type: 3}
+  - items:
+    - {fileID: 1551205041926264818, guid: ab96fcfadf530374195c80fd4172f9c7, type: 3}
+  - items:
+    - {fileID: 5123155720515252381, guid: 2d9d78a134d1edb42873716260aa1946, type: 3}
+  - items:
+    - {fileID: 4962358382121155147, guid: 956a9f4cb673a6e458c41305f2ca1b08, type: 3}
+  enemies:
+  - {fileID: 5123155720515252381, guid: 2d9d78a134d1edb42873716260aa1946, type: 3}
+  - {fileID: 4962358382121155147, guid: 956a9f4cb673a6e458c41305f2ca1b08, type: 3}
   cell_size: 1.2
   player_spawn_position: {x: 5, y: 5}
 --- !u!4 &682322698
@@ -564,6 +620,10 @@ PrefabInstance:
     - target: {fileID: 2172263533888840545, guid: b4e40408946c0e64199c5684cd9a56e4, type: 3}
       propertyPath: speed
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2172263533888840547, guid: b4e40408946c0e64199c5684cd9a56e4, type: 3}
+      propertyPath: m_UseGravity
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2172263533888840550, guid: b4e40408946c0e64199c5684cd9a56e4, type: 3}
       propertyPath: m_RootOrder

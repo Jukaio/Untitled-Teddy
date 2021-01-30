@@ -13,6 +13,7 @@ public class FlyweightList
 public class RoomGenerator : MonoBehaviour
 {
     [SerializeField] private FlyweightList[] flyweights;
+    [SerializeField] private GameObject[] enemies;
     [SerializeField] float cell_size = 1.0f;
     [SerializeField] private Vector2Int player_spawn_position;
     public Vector2Int PlayerSpawnPosition{ get { return player_spawn_position; } private set { player_spawn_position = value; } }
@@ -30,11 +31,26 @@ public class RoomGenerator : MonoBehaviour
         }
         public RoomData get(int index)
         {
+       
             return data[index];
         }
     }
     public class RoomData : Grid3D<PrototypeData>, Copyable<RoomData>
     {
+        public class GameObjectWithPosition
+        {
+            public GameObject flyweight;
+            public Vector2Int at;
+
+            public GameObjectWithPosition()
+            { }
+            public GameObjectWithPosition(GameObject flyweight, Vector2Int at)
+            {
+                this.flyweight = flyweight;
+                this.at = at;
+            }
+        }
+        private List<GameObjectWithPosition> enemies = new List<GameObjectWithPosition>();
         public RoomData()
             : base()
         {
@@ -43,6 +59,9 @@ public class RoomGenerator : MonoBehaviour
         private RoomData(RoomData other)
             : base(other)
         {
+            var temp = new GameObjectWithPosition[other.enemies.Count];
+            other.enemies.CopyTo(temp);
+            this.enemies = new List<GameObjectWithPosition>(temp);
 
         }
         public RoomData(Vector3 position, Vector2Int count, float cell_size)
@@ -53,9 +72,17 @@ public class RoomGenerator : MonoBehaviour
         {
             base.set(x, y, that);
         }
+        public void set(int x, int y, GameObject that)
+        {
+            enemies.Add(new GameObjectWithPosition(that, new Vector2Int(x, y)));
+        }
         public new PrototypeData get(int x, int y)
         {
             return base.get(x, y);
+        }
+        public GameObjectWithPosition[] get_enemies()
+        {
+            return enemies.ToArray();
         }
 
         public RoomData create_copy()
@@ -66,6 +93,7 @@ public class RoomGenerator : MonoBehaviour
     public class Room : Grid3D<CopyableGameObject>, Copyable<Room>
     {
         public GameObject parent = null;
+        private List<GameObject> enemies = new List<GameObject>();
 
         public Room()
         {
@@ -81,6 +109,12 @@ public class RoomGenerator : MonoBehaviour
             that.transform.parent = parent.transform;
             that.transform.position = grid_to_world(new Vector2Int(x, y), false);
             base.set(x, y, new CopyableGameObject(that));
+        }
+        public void add_enemy(int x, int y, GameObject that)
+        {
+            that.transform.parent = parent.transform;
+            that.transform.position = grid_to_world(new Vector2Int(x, y), false);
+            enemies.Add(that);
         }
 
         public new GameObject get(int x, int y)
@@ -130,7 +164,31 @@ public class RoomGenerator : MonoBehaviour
                     room.set(data.Index.x, data.Index.y, temp);
                 }
             }
+
+            foreach(var enemy in that.get_enemies())
+            {
+                var temp = GameObject.Instantiate(enemy.flyweight);
+                room.add_enemy(enemy.at.x, enemy.at.y,temp);
+            }
+
             base.set(x, y, room);
+        }
+
+        public void cull_world_around(Vector2Int at)
+        {
+            for (int x = 0; x < Count.x; x++)
+            {
+                for (int y = 0; y < Count.y; y++)
+                {
+                    if (get(x, y) == null)
+                        continue;
+
+                    if (x == at.x && y == at.y)
+                        get(x, y).parent.SetActive(true);
+                    else
+                        get(x, y).parent.SetActive(false);
+                }
+            }
         }
     }
     public class WorldData : Grid3D<RoomData>
@@ -186,7 +244,7 @@ public class RoomGenerator : MonoBehaviour
     void Awake()
     {
         content = json_to_LDtk("Assets/Resources/Voxel.ldtk");
-        rooms = create_room_pool(content, flyweights, cell_size);
+        rooms = create_room_pool(content, flyweights, enemies, cell_size);
 
         var world_data = create_world_data(PlayerSpawnPosition, rooms, flyweights, cell_size);
         world_data.cut_out_doors(flyweights[0]);
@@ -308,26 +366,39 @@ public class RoomGenerator : MonoBehaviour
         return data;
     }
 
-    private static Pool create_room_pool(LDtk content, FlyweightList[] prototypes, float cell_size)
+    private static Pool create_room_pool(LDtk content, FlyweightList[] prototypes, GameObject[] enemies, float cell_size)
     {
         Pool rooms = new Pool();
         foreach (var level in content.Levels)
         {
-            rooms.add(create_room_data(level, prototypes, cell_size));
+            rooms.add(create_room_data(level, prototypes, enemies, cell_size));
         }
         return rooms;
     }
-    private static RoomData create_room_data(Level level, FlyweightList[] prototypes, float cell_size)
+    private static RoomData create_room_data(Level level, FlyweightList[] prototypes, GameObject[] enemies, float cell_size)
     {
         var size = level.LayerInstances[0].GridSize;
         var room = new RoomData(Vector3.zero, new Vector2Int((int)size, (int)size), cell_size);
-        for (int x = 0; x < room.Count.x; x++)
+        foreach(var layer in level.LayerInstances)
         {
-            for (int y = 0; y < room.Count.y; y++)
+            if(layer.Identifier.Equals("Enemy"))
             {
-                var proto_index = level.LayerInstances[0].IntGrid[y * size + x].V;
-                var prototype = prototypes[proto_index];
-                room.set(x, y, new PrototypeData(new Vector2Int(x, y), prototype));
+                foreach(var tile in layer.IntGrid)
+                {
+                    room.set((int)(tile.CoordId % 16), (int)(tile.CoordId / 16), enemies[tile.V]);
+                }
+            }
+            else if(layer.Identifier.Equals("Environment"))
+            {
+                for (int x = 0; x < room.Count.x; x++)
+                {
+                    for (int y = 0; y < room.Count.y; y++)
+                    {
+                        var proto_index = layer.IntGrid[y * size + x].V;
+                        var prototype = prototypes[proto_index];
+                        room.set(x, y, new PrototypeData(new Vector2Int(x, y), prototype));
+                    }
+                }
             }
         }
         return room;

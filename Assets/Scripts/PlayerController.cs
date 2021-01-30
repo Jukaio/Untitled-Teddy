@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         transform.position = RG.world.grid_to_world(RG.PlayerSpawnPosition, true);
-        transform.Translate(Vector3.up);
+        transform.Translate(Vector3.up * 0.1f);
     }
 
     // Update is called once per frame
