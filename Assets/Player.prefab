@@ -92,7 +92,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RG: {fileID: 0}
---- !u!95 &3740351466864478977
+--- !u!95 &7087505804419961188
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -237,7 +237,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7324502909109930383, guid: 97125f51e88b3c442952d50a110bd3c0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.78
+      value: 0.708
       objectReference: {fileID: 0}
     - target: {fileID: -7324502909109930383, guid: 97125f51e88b3c442952d50a110bd3c0, type: 3}
       propertyPath: m_LocalPosition.z
