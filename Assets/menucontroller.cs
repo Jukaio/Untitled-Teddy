@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-UnityEngine.SceneManagement;
+using UnityEngine.SceneManagement;
 public class menucontroller : MonoBehaviour
 {
     // Start is called before the first frame update

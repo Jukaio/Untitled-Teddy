@@ -16,12 +16,12 @@ public class PrototypeData : Copyable<PrototypeData>
 
     public Vector2Int Index { get; private set; }
     private FlyweightCollection prototypes;
-    public FlyweightCollection Prototype { get { return prototypes; } set { prototypes = value; } }
+    public FlyweightCollection Flyweight { get { return prototypes; } set { prototypes = value; } }
 
     public PrototypeData create_copy()
     {
         
-        return new PrototypeData(Index, Prototype);
+        return new PrototypeData(Index, Flyweight);
     }
 }
 public class CopyableGameObject : Copyable<CopyableGameObject>

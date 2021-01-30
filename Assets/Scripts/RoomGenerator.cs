@@ -14,6 +14,8 @@ public class RoomGenerator : MonoBehaviour
     public Vector2Int PlayerSpawnPosition{ get { return player_spawn_position; } private set { player_spawn_position = value; } }
     private Pool rooms = new Pool();
     private LDtk content;
+
+    private WorldData world_data;
     public World world { get; private set; }
 
     public class Pool
@@ -155,7 +157,7 @@ public class RoomGenerator : MonoBehaviour
                 for (int iy = 0; iy < that.Count.y; iy++)
                 {
                     var data = that.get(ix, iy);
-                    var temp = GameObject.Instantiate(data.Prototype.items[Random.Range(0, data.Prototype.items.Length)]);
+                    var temp = GameObject.Instantiate(data.Flyweight.items[Random.Range(0, data.Flyweight.items.Length)]);
                     room.set(data.Index.x, data.Index.y, temp);
                 }
             }
@@ -210,11 +212,11 @@ public class RoomGenerator : MonoBehaviour
 
             int tx = direction.x > 0 ? data.Count.x - 1 : direction.x < 0 ? 0 : data.Count.x / 2;
             int ty = direction.y > 0 ? data.Count.y - 1 : direction.y < 0 ? 0 : data.Count.y / 2;
-            data.get(tx, ty).Prototype = door;
+            data.get(tx, ty).Flyweight = door;
 
             tx = tx > 0 && tx < data.Count.x - 1 ? tx - 1 : tx;
             ty = ty > 0 && ty < data.Count.y - 1 ? ty - 1 : ty;
-            data.get(tx, ty).Prototype = door;
+            data.get(tx, ty).Flyweight = door;
         }
         public void cut_out_doors(FlyweightCollection door_prototype)
         {
@@ -241,9 +243,30 @@ public class RoomGenerator : MonoBehaviour
         content = json_to_LDtk("Assets/Resources/Voxel.ldtk");
         rooms = create_room_pool(content, flyweights, enemies, cell_size);
 
-        var world_data = create_world_data(PlayerSpawnPosition, rooms, flyweights, cell_size);
+        world_data = create_world_data(PlayerSpawnPosition, rooms, flyweights, cell_size);
         world_data.cut_out_doors(flyweights[0]);
         world = create_world(world_data);
+
+        EnemyController.RG = this;
+    }
+
+    public bool[,] as_bool(Vector2Int at_room)
+    {
+
+        var room = world_data.get(at_room.x, at_room.y);
+        bool[,] to_return = new bool[room.Count.x, room.Count.y];
+        if (room != null)
+        {
+            for (int x = 0; x < room.Count.x; x++)
+            {
+                for (int y = 0; y < room.Count.y; y++)
+                {
+                    // Ground Flyweights are path
+                    to_return[x, y] = (room.get(x, y).Flyweight == flyweights[0]);
+                }
+            }
+        }
+        return to_return;
     }
 
     void LateUpdate()

@@ -11,7 +11,7 @@ using UnityEngine;
 
 public class Finite
 {
-    private List<IState> states = new List<IState>();
+    private Dictionary<string, IState> states = new Dictionary<string, IState>();
     private IState reset = null;
     private IState current = null;
     private IState next = null;
@@ -33,10 +33,12 @@ public class Finite
     public abstract class State : IState
     {
         private GameObject context;
+        public string Next { get; set; }
         public GameObject Context { get { return context; } }
         public State(GameObject context)
         {
             this.context = context;
+            
         }
 
         public abstract void enter(Finite collection);
@@ -45,11 +47,22 @@ public class Finite
 
         public class Machine
         {
-            Finite collection;
+            private Finite collection;
 
-            public Machine(IState state)
+            public void add(string name, IState state)
             {
-                collection = new Finite(state);
+                collection.add(name, state);
+            }
+            public void remove(string name)
+            {
+                collection.remove(name);
+                
+            }
+
+            public Machine(string name, IState state)
+            {
+                collection = new Finite(name, state);
+                collection.current.enter(collection);
             }
 
             public void update()
@@ -86,31 +99,33 @@ public class Finite
         }
     }
 
-    public Finite(IState state)
+    public Finite(string name, IState state)
     {
         current = state;
         reset = state;
-        states.Add(state);
+        states.Add(name, state);
     }
-    public void set_reset(IState state)
+    public void set_reset(string name)
     {
-        reset = state;
+        if (states.ContainsKey(name))
+        {
+            reset = states[name];
+        }
     }
 
-    public void add(IState state)
+    public void add(string name, IState state)
     {
-        states.Add(state);
+        states.Add(name, state);
     }
-    public void remove(IState state)
+    public void remove(string name)
     {
-        states.Remove(state);
+        states.Remove(name);
     }
-    public void set_next(IState to)
+    public void set_next(string name)
     {
-        foreach (var state in states)
+        if(states.ContainsKey(name))
         {
-            if (state.Equals(to))
-                next = state;
+            next = states[name];
         }
     }
 

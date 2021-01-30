@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        /* Global for player access */
+        EnemyController.player = gameObject;
         rb = GetComponent<Rigidbody>();
     }
     void Start()
