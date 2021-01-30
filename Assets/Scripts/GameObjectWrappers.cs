@@ -8,18 +8,19 @@ public class PrototypeData : Copyable<PrototypeData>
     {
 
     }
-    public PrototypeData(Vector2Int index, FlyweightList prototype)
+    public PrototypeData(Vector2Int index, FlyweightCollection prototype)
     {
         this.Index = index;
         this.prototypes = prototype;
     }
 
     public Vector2Int Index { get; private set; }
-    private FlyweightList prototypes;
-    public FlyweightList Prototype { get { return prototypes; } set { prototypes = value; } }
+    private FlyweightCollection prototypes;
+    public FlyweightCollection Prototype { get { return prototypes; } set { prototypes = value; } }
 
     public PrototypeData create_copy()
     {
+        
         return new PrototypeData(Index, Prototype);
     }
 }

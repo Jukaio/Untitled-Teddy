@@ -4,15 +4,10 @@ using UnityEngine;
 using System.IO;
 using QuickType;
 
-[System.Serializable]
-public class FlyweightList
-{
-    [SerializeField] public GameObject[] items;
-}
 
 public class RoomGenerator : MonoBehaviour
 {
-    [SerializeField] private FlyweightList[] flyweights;
+    [SerializeField] private FlyweightCollection[] flyweights;
     [SerializeField] private GameObject[] enemies;
     [SerializeField] float cell_size = 1.0f;
     [SerializeField] private Vector2Int player_spawn_position;
@@ -207,7 +202,7 @@ public class RoomGenerator : MonoBehaviour
             var copy = that != null ? that.create_copy() : null;
             base.set(x, y, copy);
         }
-        private void cut_door_at(int x, int y, Vector2Int direction, FlyweightList door)
+        private void cut_door_at(int x, int y, Vector2Int direction, FlyweightCollection door)
         {
             var data = get(x, y);
 
@@ -221,7 +216,7 @@ public class RoomGenerator : MonoBehaviour
             ty = ty > 0 && ty < data.Count.y - 1 ? ty - 1 : ty;
             data.get(tx, ty).Prototype = door;
         }
-        public void cut_out_doors(FlyweightList door_prototype)
+        public void cut_out_doors(FlyweightCollection door_prototype)
         {
             for (int x = 0; x < Count.x; x++)
             {
@@ -275,7 +270,7 @@ public class RoomGenerator : MonoBehaviour
      * */
 
 
-    private static WorldData create_world_data(Vector2Int spawn,Pool rooms, FlyweightList[] prototypes, float cell_size)
+    private static WorldData create_world_data(Vector2Int spawn,Pool rooms, FlyweightCollection[] prototypes, float cell_size)
     {
         // Initialise the whole world
         WorldData world_data = new WorldData(Vector3.zero, new Vector2Int(11, 11), 16.0f * cell_size);
@@ -366,7 +361,7 @@ public class RoomGenerator : MonoBehaviour
         return data;
     }
 
-    private static Pool create_room_pool(LDtk content, FlyweightList[] prototypes, GameObject[] enemies, float cell_size)
+    private static Pool create_room_pool(LDtk content, FlyweightCollection[] prototypes, GameObject[] enemies, float cell_size)
     {
         Pool rooms = new Pool();
         foreach (var level in content.Levels)
@@ -375,7 +370,7 @@ public class RoomGenerator : MonoBehaviour
         }
         return rooms;
     }
-    private static RoomData create_room_data(Level level, FlyweightList[] prototypes, GameObject[] enemies, float cell_size)
+    private static RoomData create_room_data(Level level, FlyweightCollection[] prototypes, GameObject[] enemies, float cell_size)
     {
         var size = level.LayerInstances[0].GridSize;
         var room = new RoomData(Vector3.zero, new Vector2Int((int)size, (int)size), cell_size);

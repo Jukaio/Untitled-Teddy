@@ -196,31 +196,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03ca356eb1055624ab5f3afbec0a5681, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prototypes:
-  - items:
-    - {fileID: 4209216223322273726, guid: a9d12052ef6d2414598f99ce80f2a29d, type: 3}
-  - items:
-    - {fileID: 6833898064498870666, guid: d7c29c7a047321144aa4aedde79f12b4, type: 3}
-    - {fileID: 8003523610005843648, guid: a1b4e567086839846988eb40b4734039, type: 3}
-    - {fileID: 6833898064498870666, guid: d0bc2423a77bbb34bb7771ff91fc2bff, type: 3}
-  - items:
-    - {fileID: 1633723502923484671, guid: 32566f9a7d7d4974baa96a520f4864bc, type: 3}
-    - {fileID: 3471901735914841803, guid: 79b584f62cb340040964036524bfec39, type: 3}
-    - {fileID: 3156726675905930519, guid: 81976908bb7855b4a99b151a8641dd48, type: 3}
-  - items:
-    - {fileID: 319285339354385407, guid: 5d665b0bc68c8be47b8cf45cf3b69fde, type: 3}
-    - {fileID: 6616986439634088549, guid: 25f812aafb52b2f43b7779d525971d49, type: 3}
-    - {fileID: 3156726675905930519, guid: bfe50f05c124023488a8fbeb0d5d9d24, type: 3}
-  - items:
-    - {fileID: 254597720907404708, guid: 74a1b18dce3459047a10fb66bd33c71d, type: 3}
-    - {fileID: 2995128355383846822, guid: 901ad8f21a944564a9777f63b120e12c, type: 3}
-    - {fileID: 3156726675905930519, guid: a67afa22b0688af44922aba66300a233, type: 3}
-  - items:
-    - {fileID: 117926131315950436, guid: 480e7dfd9909b69478283424a4d9a529, type: 3}
-    - {fileID: 117926131315950436, guid: 606796349e6238f44ae500f30f100f38, type: 3}
-    - {fileID: 117926131315950436, guid: 7033ea14020dd6743ace8397c83825a8, type: 3}
-    - {fileID: 117926131315950436, guid: de88a1f8ae86b8f4d8726dd0c3dcad10, type: 3}
-    - {fileID: 117926131315950436, guid: e862164626dc60e47aac769e5455a564, type: 3}
+  flyweights:
+  - {fileID: 11400000, guid: 9dede28429062bb4692042476edfe4a0, type: 2}
+  - {fileID: 11400000, guid: fbf79e93f8efdcc4fb90092669179938, type: 2}
+  - {fileID: 11400000, guid: 60b17e4ffca28d443999163f8314eee3, type: 2}
+  - {fileID: 11400000, guid: df8f6829d9590b9419d0103972e44519, type: 2}
+  - {fileID: 11400000, guid: 535c720695185dc4b80e3907b3fa9044, type: 2}
+  - {fileID: 11400000, guid: 1ec6db9244ca1ba4c814ef6e410ed255, type: 2}
+  - {fileID: 11400000, guid: 41c3e0c2f0cce4540b20b124af65c757, type: 2}
+  - {fileID: 11400000, guid: d6772a22d3611924a986d3164e923b56, type: 2}
+  - {fileID: 11400000, guid: 82623cb9428ec914e80324680feac85f, type: 2}
+  - {fileID: 11400000, guid: 528c426653dc2ef4aa8082295cbf818a, type: 2}
+  - {fileID: 11400000, guid: 55cca82e19d30dc4e824095bc318560a, type: 2}
+  - {fileID: 11400000, guid: cc9ec43ed8be2b1489655d0dd43cb606, type: 2}
+  enemies:
+  - {fileID: 5123155720515252381, guid: 2d9d78a134d1edb42873716260aa1946, type: 3}
+  - {fileID: 4962358382121155147, guid: 956a9f4cb673a6e458c41305f2ca1b08, type: 3}
   cell_size: 1.2
   player_spawn_position: {x: 5, y: 5}
 --- !u!4 &682322698
@@ -693,6 +684,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6026640262494920034, guid: b4e40408946c0e64199c5684cd9a56e4, type: 3}
+      propertyPath: RG
+      value: 
+      objectReference: {fileID: 682322697}
     - target: {fileID: 6350044931068944034, guid: b4e40408946c0e64199c5684cd9a56e4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
