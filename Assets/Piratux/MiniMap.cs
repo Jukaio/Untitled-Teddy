@@ -15,6 +15,8 @@ public class MiniMap : MonoBehaviour
 
     Vector2Int player_cell_pos;
 
+    private bool swapped_once = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +29,7 @@ public class MiniMap : MonoBehaviour
                 // (RG.world.Count.y - 1 - j), because camera angle is flipped...
                 if (RG.world.get(i, RG.world.Count.y - 1 - j) == null)
                 {
-                    map_cell[i,j] = Instantiate(Empty);
+                    map_cell[i, j] = Instantiate(Empty);
                 }
                 else
                 {
@@ -40,18 +42,18 @@ public class MiniMap : MonoBehaviour
                         map_cell[i, j] = Instantiate(Room);
                     }
                 }
-                map_cell[i,j].transform.SetParent(transform, false);
-                var RT = map_cell[i,j].GetComponent<RectTransform>();
+                map_cell[i, j].transform.SetParent(transform, false);
+                var RT = map_cell[i, j].GetComponent<RectTransform>();
                 RT.anchoredPosition = new Vector3(map_image_size * i, -map_image_size * j, 0);
             }
         }
     }
-
+    
     // Update is called once per frame
     void Update()
     {
         var new_player_cell_pos = RG.world.world_to_grid(player.transform.position);
-        if(new_player_cell_pos != player_cell_pos)
+        if (new_player_cell_pos != player_cell_pos)
         {
             UpdatePlayerMiniMapPosition(player_cell_pos, new_player_cell_pos);
             player_cell_pos = new_player_cell_pos;
@@ -59,7 +61,17 @@ public class MiniMap : MonoBehaviour
     }
     void UpdatePlayerMiniMapPosition(Vector2Int previous_pos, Vector2Int new_pos)
     {
-        map_cell[previous_pos.x, RG.world.Count.y - 1 - previous_pos.y].GetComponent<UnityEngine.UI.Image>().color = Room.GetComponent<UnityEngine.UI.Image>().color;
-        map_cell[new_pos.x, RG.world.Count.y - 1 - new_pos.y].GetComponent<UnityEngine.UI.Image>().color = Player.GetComponent<UnityEngine.UI.Image>().color;
+        if(swapped_once == false)
+        {
+            swapped_once = true;
+            map_cell[previous_pos.x, RG.world.Count.y - 1 - previous_pos.y].GetComponent<UnityEngine.UI.Image>().color = Empty.GetComponent<UnityEngine.UI.Image>().color;
+            map_cell[new_pos.x, RG.world.Count.y - 1 - new_pos.y].GetComponent<UnityEngine.UI.Image>().color = Player.GetComponent<UnityEngine.UI.Image>().color;
+        }
+        else
+        {
+            var temp_color = map_cell[previous_pos.x, RG.world.Count.y - 1 - previous_pos.y].GetComponent<UnityEngine.UI.Image>().color;
+            map_cell[previous_pos.x, RG.world.Count.y - 1 - previous_pos.y].GetComponent<UnityEngine.UI.Image>().color = map_cell[new_pos.x, RG.world.Count.y - 1 - new_pos.y].GetComponent<UnityEngine.UI.Image>().color;
+            map_cell[new_pos.x, RG.world.Count.y - 1 - new_pos.y].GetComponent<UnityEngine.UI.Image>().color = temp_color;
+        }
     }
 }
