@@ -1,5 +1,28 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &622119150319441018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 795937110759517803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  Event: event:/Player/Step
+  PlayEvent: 7
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 0
+  OverrideMaxDistance: 0
 --- !u!1 &2172263533888840551
 GameObject:
   m_ObjectHideFlags: 0
@@ -92,6 +115,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RG: {fileID: 0}
+--- !u!114 &5332603384954004696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4202016979625561035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  Event: event:/Player/Step
+  PlayEvent: 7
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 0
+  OverrideMaxDistance: 0
 --- !u!95 &7087505804419961188
 Animator:
   serializedVersion: 3
@@ -262,5 +308,15 @@ Transform:
 --- !u!4 &8879707485800459445 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -7324502909109930383, guid: 97125f51e88b3c442952d50a110bd3c0, type: 3}
+  m_PrefabInstance: {fileID: 7016939723720268484}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4202016979625561035 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -2652130149045022449, guid: 97125f51e88b3c442952d50a110bd3c0, type: 3}
+  m_PrefabInstance: {fileID: 7016939723720268484}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &795937110759517803 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7668100837431030959, guid: 97125f51e88b3c442952d50a110bd3c0, type: 3}
   m_PrefabInstance: {fileID: 7016939723720268484}
   m_PrefabAsset: {fileID: 0}
