@@ -394,7 +394,7 @@ MonoBehaviour:
   HasSourceProject: 0
   HasPlatforms: 0
   sourceProjectPath: 
-  sourceBankPath: ../../../Game Sounds/Fmod Projects/ToyGame/Build/Desktop
+  sourceBankPath: Assets/Plugins/FMOD/Build/Desktop
   SourceBankPathUnformatted: 
   AutomaticEventLoading: 1
   BankLoadType: 0
