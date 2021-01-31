@@ -35,6 +35,7 @@ GameObject:
   - component: {fileID: 6224161465652632243}
   - component: {fileID: 6932750311985591829}
   - component: {fileID: 2647404053429999437}
+  - component: {fileID: -3472263945675712260}
   m_Layer: 7
   m_Name: Duck
   m_TagString: Untagged
@@ -155,6 +156,29 @@ CapsuleCollider:
   m_Height: 1.5
   m_Direction: 1
   m_Center: {x: 0, y: 0.75, z: 0.15}
+--- !u!114 &-3472263945675712260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5123155720515252381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  Event: event:/Iloveyou
+  PlayEvent: 11
+  StopEvent: 12
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 0
+  OverrideMaxDistance: 0
 --- !u!1001 &2920505122351760806
 PrefabInstance:
   m_ObjectHideFlags: 0

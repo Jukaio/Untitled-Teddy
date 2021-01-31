@@ -89,11 +89,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthbar: {fileID: 5676828674692543472}
+  fillbar: {fileID: 0}
   max_health: 250
   regenerated_health: 0
   combat_cooldown: 0
   regeneration_cooldown: 5
-  curr_health: 0
 --- !u!1 &5676828674692543472
 GameObject:
   m_ObjectHideFlags: 0
@@ -271,6 +271,7 @@ GameObject:
   - component: {fileID: 5676828675432444647}
   - component: {fileID: 5676828675432444646}
   - component: {fileID: 5676828675432444645}
+  - component: {fileID: 7563111462458223416}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -377,3 +378,27 @@ MonoBehaviour:
   Player: {fileID: 6148664332352637656, guid: 7ea31ee1421c98d4abca92618db7a774, type: 3}
   Room: {fileID: 6671734399783074315, guid: 0f1c48f5333998246afccc35ca39b61b, type: 3}
   MapBorder: {fileID: 4976980693539895040, guid: a90cba6c635430049a21e18e834b95d6, type: 3}
+  offset: {x: 0, y: 0, z: 0}
+--- !u!114 &7563111462458223416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5676828675432444644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  Event: event:/Music/Music
+  PlayEvent: 1
+  StopEvent: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 0
+  OverrideMaxDistance: 0
