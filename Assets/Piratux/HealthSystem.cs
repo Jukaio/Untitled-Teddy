@@ -27,7 +27,7 @@ public class HealthSystem : MonoBehaviour
     void Update()
     {
         // just to test
-        curr_health = Mathf.Clamp(curr_health, 0, max_health);
+        curr_health = Mathf.Clamp(curr_health, -1, max_health);
 
         float health_percent = curr_health * 100 / max_health;
         if(healthbar != null) healthbar.GetComponent<UnityEngine.UI.Slider>().value = health_percent / 100;

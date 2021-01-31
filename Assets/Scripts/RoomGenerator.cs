@@ -15,7 +15,7 @@ public class RoomGenerator : MonoBehaviour
     public Vector2Int PlayerSpawnPosition{ get { return player_spawn_position; } private set { player_spawn_position = value; } }
     private Pool rooms = new Pool();
     private LDtk content;
-
+    [SerializeField] private GameObject goal;
     private WorldData world_data;
     public World world { get; private set; }
 
@@ -245,9 +245,9 @@ public class RoomGenerator : MonoBehaviour
         content = json_to_LDtk("Assets/Resources/Voxel.ldtk");
         rooms = create_room_pool(content, flyweights, special_layer, cell_size);
 
-        world_data = create_world_data(PlayerSpawnPosition, rooms, flyweights, cell_size);
+        world_data = create_world_data(PlayerSpawnPosition, rooms, flyweights, cell_size, ref last_room);
         world_data.cut_out_doors(flyweights[0]);
-        world = create_world(world_data);
+        world = create_world(world_data, last_room, goal);
 
         EnemyController.RG = this;
     }
@@ -294,8 +294,8 @@ public class RoomGenerator : MonoBehaviour
 
      * */
 
-
-    private static WorldData create_world_data(Vector2Int spawn,Pool rooms, FlyweightCollection[] prototypes, float cell_size)
+    Vector2Int last_room = new Vector2Int();
+    private static WorldData create_world_data(Vector2Int spawn,Pool rooms, FlyweightCollection[] prototypes, float cell_size, ref Vector2Int last_room)
     {
         // Initialise the whole world
         WorldData world_data = new WorldData(Vector3.zero, new Vector2Int(11, 11), 16.0f * cell_size);
@@ -317,8 +317,7 @@ public class RoomGenerator : MonoBehaviour
         Vector2Int prev;
         List<Vector2Int> open_direction = new List<Vector2Int>();
         prev = current;
-
-        var layout = RecursiveBacktracking.build_path(spawn, world_data.Count, 30);
+        var layout = RecursiveBacktracking.build_path(spawn, world_data.Count, 30, ref last_room);
         for (int x = 0; x < layout.GetLength(0); x++)
         {
             for (int y = 0; y < layout.GetLength(1); y++)
@@ -356,7 +355,7 @@ public class RoomGenerator : MonoBehaviour
         */
         return world_data;
     }
-    private static World create_world(WorldData data)
+    private static World create_world(WorldData data, Vector2Int last_room, GameObject goal)
     {
         // For now a fixed size of 2x2
         // Add procedural room generation here
@@ -371,6 +370,8 @@ public class RoomGenerator : MonoBehaviour
                 world.set(x, y, data.get(x, y));
             }
         }
+        var last_position = world.grid_to_world(last_room, true);
+        goal.transform.position = last_position;
         return world;
     }
     private static LDtk json_to_LDtk(string path)

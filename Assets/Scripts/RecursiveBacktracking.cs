@@ -27,13 +27,13 @@ class RecursiveBacktracking
         public bool[] directions = { false, false, false, false };
     }
 
-    public static bool[,] build_path(Vector2Int start, Vector2Int size, int room_count)
+    public static bool[,] build_path(Vector2Int start, Vector2Int size, int room_count, ref Vector2Int last_room)
     {
         count = room_count;
         Node[,] grid = new Node[size.x, size.y];
         grid[start.x, start.y] = new Node();
         count--; // Start room is first room
-        recursive_building(start.x, start.y, ref grid);
+        recursive_building(start.x, start.y, ref grid, ref last_room);
 
         bool[,] paths = new bool[size.x, size.y];
         for (int x = 0; x < grid.GetLength(0); x++)
@@ -56,11 +56,10 @@ class RecursiveBacktracking
         return paths;
     }
 
-    private static void recursive_building(int cx, int cy, ref Node[,] grid)
+    private static void recursive_building(int cx, int cy, ref Node[,] grid, ref Vector2Int last_room)
     {
         List<int> directions = new List<int> { N, S, E, W };
         directions.Sort((lhs, rhs) => Random.Range(0, 3).CompareTo(Random.Range(0, 3)));
-        
 
         foreach (var dir in directions)
         {
@@ -88,11 +87,12 @@ class RecursiveBacktracking
                 if (count < 0)
                     return;
 
+                last_room = new Vector2Int(nx, ny);
                 grid[nx, ny] = new Node();
                 grid[cx, cy].directions[dir] = true;
                 grid[nx, ny].directions[OPP[dir]] = true;
 
-                recursive_building(nx, ny, ref grid);
+                recursive_building(nx, ny, ref grid, ref last_room);
             }
         }
     }

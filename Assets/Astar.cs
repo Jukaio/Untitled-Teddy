@@ -23,12 +23,18 @@ public static class AStar
 
 		return difference.x + difference.y;
 	}
-
+	private static bool in_bounds(Vector2Int that, Vector2Int within)
+	{
+		return that.x >= 0 && that.y >= 0 && that.x < within.x && that.y < within.y;
+    }
 	public static bool solvable(out List<Vector2Int> out_path, bool[,] grid, Vector2Int start, Vector2Int end)
 	{
 		out_path = new List<Vector2Int>();
-		if (!(start.x < grid.GetLength(0) && (start.y < grid.GetLength(1))))
+		if (!in_bounds(start, new Vector2Int(grid.GetLength(0), grid.GetLength(1))))
 			return false;
+		if (!in_bounds(end, new Vector2Int(grid.GetLength(0), grid.GetLength(1))))
+			return false;
+
 		// Reset the grid and put the values on their "defaults"
 		Node[,] nodes = new Node[grid.GetLength(0), grid.GetLength(1)];
 

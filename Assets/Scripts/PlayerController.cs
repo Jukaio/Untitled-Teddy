@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class PlayerController : MonoBehaviour
+using UnityEngine.SceneManagement;
+public class PlayerController : MonoBehaviour, DamageSystem.Callback
 {
     // Start is called before the first frame update
     [SerializeField] float speed = 2.0f;
     [SerializeField] RoomGenerator RG;
-
+    [SerializeField] SwordHandle weapon;
     [SerializeField] private Animator anim;
 
     private const int CURRENT = 0;
@@ -24,8 +24,10 @@ public class PlayerController : MonoBehaviour
     {
         /* Global for player access */
         EnemyController.player = gameObject;
+        weapon = GetComponent<SwordHandle>();
         rb = GetComponent<Rigidbody>();
         damage = GetComponent<DamageSystem>();
+        damage.register(this);
     }
     void Start()
     {
@@ -58,6 +60,27 @@ public class PlayerController : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
             damage.damage(10);
+            if(weapon.HasWeapon) weapon.lose_weapon();
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Collectible") && (!weapon.HasWeapon))
+        {
+            weapon.get_weapon(other.gameObject.name);
+            other.gameObject.SetActive(false);
+        }
+    }
+
+    public void on_hit(Weapon with, DamageSystem.Type how)
+    {
+    }
+
+    public void on_death()
+    {
+        SceneManager.LoadScene("menu", LoadSceneMode.Single);
     }
 }
