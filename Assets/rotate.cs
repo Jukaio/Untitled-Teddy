@@ -12,12 +12,12 @@ float height = 0.5f;
     // Update is called once per frame
     void Update()
     {
-         transform.Rotate( new Vector3(0, 1, 0), Space.Self );
-Vector3 pos = transform.position;
+         transform.Rotate( new Vector3(0.25f, 1, 0.5f), Space.Self );
+        //Vector3 pos = transform.position;
         //calculate what the new Y position will be
         float newY = Mathf.Sin(Time.time * speed);
         //set the object's Y to the new calculated Y
-        transform.position = new Vector3(pos.x, newY, pos.z) * height;
+        //transform.position = new Vector3(pos.x, newY, pos.z) * height;
 
     }
 }

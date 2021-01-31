@@ -26,8 +26,10 @@ public static class AStar
 
 	public static bool solvable(out List<Vector2Int> out_path, bool[,] grid, Vector2Int start, Vector2Int end)
 	{
-		// Reset the grid and put the values on their "defaults"
 		out_path = new List<Vector2Int>();
+		if (!(start.x < grid.GetLength(0) && (start.y < grid.GetLength(1))))
+			return false;
+		// Reset the grid and put the values on their "defaults"
 		Node[,] nodes = new Node[grid.GetLength(0), grid.GetLength(1)];
 
 		for (int x = 0; x < grid.GetLength(0); x++)
