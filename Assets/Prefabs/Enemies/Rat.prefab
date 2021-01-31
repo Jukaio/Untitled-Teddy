@@ -121,6 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53e4766d5fd8b0048a231bf5a4d99904, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DamageEvent: event:/Enemies/hit
 --- !u!95 &9165064149667558566
 Animator:
   serializedVersion: 3

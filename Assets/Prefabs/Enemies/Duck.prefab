@@ -100,6 +100,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1df6843a91548e74d999bb9df3f51685, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DamageEvent: 
+  DeathEvent: 
 --- !u!114 &3812381201429671888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,6 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53e4766d5fd8b0048a231bf5a4d99904, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DamageEvent: event:/Enemies/hit
 --- !u!114 &6224161465652632243
 MonoBehaviour:
   m_ObjectHideFlags: 0
