@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     private const int CURRENT = 0;
     private const int PREVIOUS = 1;
 
+    DamageSystem damage;
+
     private Vector3[] movement_axes = { new Vector3(), new Vector3() };
 
     private float view_angle = 0.0f;
@@ -23,6 +25,7 @@ public class PlayerController : MonoBehaviour
         /* Global for player access */
         EnemyController.player = gameObject;
         rb = GetComponent<Rigidbody>();
+        damage = GetComponent<DamageSystem>();
     }
     void Start()
     {
@@ -50,5 +53,11 @@ public class PlayerController : MonoBehaviour
         anim.SetFloat("velocity", use.magnitude);
         rb.velocity = use * speed;
         transform.localRotation = Quaternion.Euler(0, view_angle, 0);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+            damage.damage(10);
     }
 }

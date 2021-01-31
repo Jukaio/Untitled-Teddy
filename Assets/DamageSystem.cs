@@ -63,7 +63,7 @@ public class DamageSystem : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Sword weapon = null;
+        Weapon weapon = null;
         if(other.gameObject.TryGetComponent(out weapon))
         {
             on_hit(weapon, Type.Trigger);
@@ -71,7 +71,7 @@ public class DamageSystem : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        Sword weapon = null;
+        Weapon weapon = null;
         if (collision.gameObject.TryGetComponent(out weapon))
         {
             on_hit(weapon, Type.Collision);

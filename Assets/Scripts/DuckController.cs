@@ -95,6 +95,7 @@ public class DuckController : EnemyController
         public Chase(GameObject context)
             : base(context, 1.0f / 45.0f, 1.0f / 15.0f)
         {
+            path = new Stack<Vector2Int>();
             rb = Context.GetComponent<Rigidbody>();
             var room_index = RG.world.world_to_grid(Context.transform.position);
             room = RG.world.get(room_index.x, room_index.y);

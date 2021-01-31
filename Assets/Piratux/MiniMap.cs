@@ -12,6 +12,7 @@ public class MiniMap : MonoBehaviour
     [SerializeField] GameObject Player;
     [SerializeField] GameObject Room;
     [SerializeField] GameObject MapBorder;
+    [SerializeField] Vector3 offset;
     GameObject[,] map_cell;
     //private bool[,] room_discovered;
 
@@ -58,13 +59,13 @@ public class MiniMap : MonoBehaviour
                 }
                 map_cell[i, j].transform.SetParent(transform, false);
                 var RT = map_cell[i, j].GetComponent<RectTransform>();
-                RT.anchoredPosition = new Vector3(map_image_size * i, -map_image_size * j, 0);
+                RT.anchoredPosition = new Vector3(map_image_size * i, -map_image_size * j, 0) + offset;
             }
         }
         var map_border = Instantiate(MapBorder);
         map_border.transform.SetParent(transform, false);
         var rt = map_border.GetComponent<RectTransform>();
-        rt.anchoredPosition = new Vector3(0, 0, 0);
+        rt.anchoredPosition = new Vector3(0, 0, 0) + offset;
     }
     
     // Update is called once per frame
