@@ -104,6 +104,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   RG: {fileID: 0}
+  weapon: {fileID: 0}
   anim: {fileID: 0}
 --- !u!114 &6026640262494920034
 MonoBehaviour:
@@ -148,6 +149,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sword: {fileID: 0}
   anim: {fileID: 0}
+  main: {fileID: 0}
+  axe: {fileID: 0}
+  pistol: {fileID: 0}
+  cool_axe: {fileID: 0}
+  hammer: {fileID: 0}
+  UI: {fileID: 0}
+  SwingEvent: event:/Player/swing
 --- !u!114 &5332603384954004696
 MonoBehaviour:
   m_ObjectHideFlags: 0
