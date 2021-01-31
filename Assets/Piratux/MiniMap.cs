@@ -32,12 +32,14 @@ public class MiniMap : MonoBehaviour
             {
                 room_discovered[i, j] = false;
                 map_cell[i, j] = Instantiate(Empty);
+                map_cell[i, j].layer = LayerMask.NameToLayer("UI");
                 map_cell[i, j].transform.SetParent(transform, false);
                 var RT = map_cell[i, j].GetComponent<RectTransform>();
                 RT.anchoredPosition = new Vector3(map_image_size * i, -map_image_size * j, 0) + offset;
             }
         }
         var map_border = Instantiate(MapBorder);
+        map_border.layer = LayerMask.NameToLayer("UI");
         map_border.transform.SetParent(transform, false);
         var rt = map_border.GetComponent<RectTransform>();
         rt.anchoredPosition = new Vector3(0, 0, 0) + offset;
