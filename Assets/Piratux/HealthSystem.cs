@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class HealthSystem : MonoBehaviour
 {
-    public GameObject healthbar;
+    [SerializeField] public GameObject healthbar;
+    [SerializeField] public GameObject fillbar;
     [SerializeField] private int max_health = 100;
     [SerializeField] private int regenerated_health = 10; // HP/sec
     public int combat_cooldown = 0; // health regenerates only when this is 0
@@ -29,11 +30,11 @@ public class HealthSystem : MonoBehaviour
         curr_health = Mathf.Clamp(curr_health, 0, max_health);
 
         float health_percent = curr_health * 100 / max_health;
-        healthbar.GetComponent<UnityEngine.UI.Slider>().value = health_percent / 100;
+        if(healthbar != null) healthbar.GetComponent<UnityEngine.UI.Slider>().value = health_percent / 100;
         if (health_percent > 50)
-            GetComponent<UnityEngine.UI.Image>().color = new Color((100 - health_percent) / 50, 1, 0);
+            if (fillbar != null) fillbar.GetComponent<UnityEngine.UI.Image>().color = new Color((100 - health_percent) / 50, 1, 0);
         else
-            GetComponent<UnityEngine.UI.Image>().color = new Color(1, health_percent / 50, 0);
+            if (fillbar != null) fillbar.GetComponent<UnityEngine.UI.Image>().color = new Color(1, health_percent / 50, 0);
         // just to test end
 
         if (combat_cooldown == 0)
@@ -67,11 +68,11 @@ public class HealthSystem : MonoBehaviour
         curr_health = Mathf.Clamp(curr_health, 0, max_health);
 
         float health_percent = curr_health * 100 / max_health;
-        healthbar.GetComponent<UnityEngine.UI.Slider>().value = health_percent / 100;
+        if (healthbar != null) healthbar.GetComponent<UnityEngine.UI.Slider>().value = health_percent / 100;
         if (health_percent > 50)
-            GetComponent<UnityEngine.UI.Image>().color = new Color((100 - health_percent) / 50, 1, 0);
+            if (fillbar != null) fillbar.GetComponent<UnityEngine.UI.Image>().color = new Color((100 - health_percent) / 50, 1, 0);
         else
-            GetComponent<UnityEngine.UI.Image>().color = new Color(1, health_percent / 50, 0);
+            if (fillbar != null) fillbar.GetComponent<UnityEngine.UI.Image>().color = new Color(1, health_percent / 50, 0);
 
         if (curr_health == 0)
         {

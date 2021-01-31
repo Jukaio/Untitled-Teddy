@@ -8,7 +8,8 @@ using QuickType;
 public class RoomGenerator : MonoBehaviour
 {
     [SerializeField] private FlyweightCollection[] flyweights;
-    [SerializeField] private GameObject[] enemies;
+    [SerializeField] private FlyweightCollection[] special_layer;
+    //[SerializeField] private GameObject[] enemies;
     [SerializeField] float cell_size = 1.0f;
     [SerializeField] private Vector2Int player_spawn_position;
     public Vector2Int PlayerSpawnPosition{ get { return player_spawn_position; } private set { player_spawn_position = value; } }
@@ -34,20 +35,21 @@ public class RoomGenerator : MonoBehaviour
     }
     public class RoomData : Grid3D<PrototypeData>, Copyable<RoomData>
     {
-        public class GameObjectWithPosition
+        public class FlyweightsWithPosition
         {
-            public GameObject flyweight;
+            public FlyweightCollection flyweight;
             public Vector2Int at;
 
-            public GameObjectWithPosition()
+            public FlyweightsWithPosition()
             { }
-            public GameObjectWithPosition(GameObject flyweight, Vector2Int at)
+            public FlyweightsWithPosition(FlyweightCollection flyweight, Vector2Int at)
             {
                 this.flyweight = flyweight;
                 this.at = at;
             }
         }
-        private List<GameObjectWithPosition> enemies = new List<GameObjectWithPosition>();
+        private List<FlyweightsWithPosition> enemies = new List<FlyweightsWithPosition>();
+
         public RoomData()
             : base()
         {
@@ -56,9 +58,9 @@ public class RoomGenerator : MonoBehaviour
         private RoomData(RoomData other)
             : base(other)
         {
-            var temp = new GameObjectWithPosition[other.enemies.Count];
+            var temp = new FlyweightsWithPosition[other.enemies.Count];
             other.enemies.CopyTo(temp);
-            this.enemies = new List<GameObjectWithPosition>(temp);
+            this.enemies = new List<FlyweightsWithPosition>(temp);
 
         }
         public RoomData(Vector3 position, Vector2Int count, float cell_size)
@@ -69,15 +71,15 @@ public class RoomGenerator : MonoBehaviour
         {
             base.set(x, y, that);
         }
-        public void set(int x, int y, GameObject that)
+        public void set(int x, int y, FlyweightCollection that)
         {
-            enemies.Add(new GameObjectWithPosition(that, new Vector2Int(x, y)));
+            enemies.Add(new FlyweightsWithPosition(that, new Vector2Int(x, y)));
         }
         public new PrototypeData get(int x, int y)
         {
             return base.get(x, y);
         }
-        public GameObjectWithPosition[] get_enemies()
+        public FlyweightsWithPosition[] get_enemies()
         {
             return enemies.ToArray();
         }
@@ -164,7 +166,7 @@ public class RoomGenerator : MonoBehaviour
 
             foreach(var enemy in that.get_enemies())
             {
-                var temp = GameObject.Instantiate(enemy.flyweight);
+                var temp = GameObject.Instantiate(enemy.flyweight.items[Random.Range(0, enemy.flyweight.items.Length)]);
                 room.add_enemy(enemy.at.x, enemy.at.y,temp);
             }
 
@@ -241,7 +243,7 @@ public class RoomGenerator : MonoBehaviour
     void Awake()
     {
         content = json_to_LDtk("Assets/Resources/Voxel.ldtk");
-        rooms = create_room_pool(content, flyweights, enemies, cell_size);
+        rooms = create_room_pool(content, flyweights, special_layer, cell_size);
 
         world_data = create_world_data(PlayerSpawnPosition, rooms, flyweights, cell_size);
         world_data.cut_out_doors(flyweights[0]);
@@ -262,7 +264,7 @@ public class RoomGenerator : MonoBehaviour
                 for (int y = 0; y < room.Count.y; y++)
                 {
                     // Ground Flyweights are path
-                    to_return[x, y] = (room.get(x, y).Flyweight == flyweights[0]);
+                    to_return[x, y] = (room.get(x, y).Flyweight == flyweights[0]) || (room.get(x, y).Flyweight == flyweights[6]);
                 }
             }
         }
@@ -384,7 +386,7 @@ public class RoomGenerator : MonoBehaviour
         return data;
     }
 
-    private static Pool create_room_pool(LDtk content, FlyweightCollection[] prototypes, GameObject[] enemies, float cell_size)
+    private static Pool create_room_pool(LDtk content, FlyweightCollection[] prototypes, FlyweightCollection[] enemies, float cell_size)
     {
         Pool rooms = new Pool();
         foreach (var level in content.Levels)
@@ -393,7 +395,7 @@ public class RoomGenerator : MonoBehaviour
         }
         return rooms;
     }
-    private static RoomData create_room_data(Level level, FlyweightCollection[] prototypes, GameObject[] enemies, float cell_size)
+    private static RoomData create_room_data(Level level, FlyweightCollection[] prototypes, FlyweightCollection[] enemies, float cell_size)
     {
         var size = level.LayerInstances[0].GridSize;
         var room = new RoomData(Vector3.zero, new Vector2Int((int)size, (int)size), cell_size);
