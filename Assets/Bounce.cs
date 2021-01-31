@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Bounce : MonoBehaviour, DamageSystem.Callback
 {
+
+    [FMODUnity.EventRef]
+    public string DamageEvent = "";
+
     Rigidbody rb;
     public void on_death()
     {
@@ -16,6 +20,8 @@ public class Bounce : MonoBehaviour, DamageSystem.Callback
         direction.y = 0.0f;
         direction.Normalize();
         rb.AddForce(direction, ForceMode.Impulse);
+
+        FMODUnity.RuntimeManager.PlayOneShot(DamageEvent, transform.position);
     }
 
     // Start is called before the first frame update

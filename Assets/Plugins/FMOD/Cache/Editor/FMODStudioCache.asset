@@ -1,5 +1,51 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9190690840560771189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Enemies/hit
+  m_EditorClassIdentifier: 
+  Path: event:/Enemies/hit
+  guid: b2799af1c4d5d247ace3ef6a753bf19e
+  Banks:
+  - {fileID: 3790760750459306895}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 210
+--- !u!114 &-6416999336032470138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Player/step
+  m_EditorClassIdentifier: 
+  Path: event:/Player/step
+  guid: b5e9f824f775244690f32d0d493ceb38
+  Banks:
+  - {fileID: 3790760750459306895}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 500
 --- !u!114 &-5377225807930032110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41,14 +87,17 @@ MonoBehaviour:
   EditorEvents:
   - {fileID: 7811796436212639348}
   - {fileID: 3276472382915330622}
-  - {fileID: 7417021098298604493}
   - {fileID: -5377225807930032110}
+  - {fileID: -9190690840560771189}
+  - {fileID: 6060657895932480353}
+  - {fileID: 7022866945982023106}
+  - {fileID: -6416999336032470138}
   EditorParameters: []
   MasterBanks:
   - {fileID: 3790760750459306895}
   StringsBanks:
   - {fileID: 2026199237912909316}
-  stringsBankWriteTime: 637476521583334008
+  stringsBankWriteTime: 637476943466015837
   cacheVersion: 6
 --- !u!114 &2026199237912909316
 MonoBehaviour:
@@ -65,11 +114,11 @@ MonoBehaviour:
   Path: Assets/Plugins/FMOD/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637476521583334008
+  lastModified: 637476943466015837
   LoadResult: 0
   FileSizes:
   - Name: 
-    Value: 892
+    Value: 1116
   Exists: 1
 --- !u!114 &3276472382915330622
 MonoBehaviour:
@@ -109,10 +158,56 @@ MonoBehaviour:
   Path: Assets/Plugins/FMOD/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637476521583324222
+  lastModified: 637476943465935388
   LoadResult: 0
   FileSizes: []
   Exists: 1
+--- !u!114 &6060657895932480353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Player/death
+  m_EditorClassIdentifier: 
+  Path: event:/Player/death
+  guid: f4f98ba4762a3d42960b2f637519d3ad
+  Banks:
+  - {fileID: 3790760750459306895}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 908
+--- !u!114 &7022866945982023106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Player/swing
+  m_EditorClassIdentifier: 
+  Path: event:/Player/swing
+  guid: 0f014c43a2546e459e633bb3a53ea45c
+  Banks:
+  - {fileID: 3790760750459306895}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 161
 --- !u!114 &7417021098298604493
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,8 +222,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/Player/Step
   guid: b5e9f824f775244690f32d0d493ceb38
-  Banks:
-  - {fileID: 3790760750459306895}
+  Banks: []
   IsStream: 0
   Is3D: 0
   IsOneShot: 1

@@ -17,6 +17,9 @@ public class SwordHandle : WeaponHandle
     bool has_weapon = true;
     public bool HasWeapon { get{ return has_weapon; }}
 
+    [FMODUnity.EventRef]
+    public string SwingEvent = "";
+
     public void lose_weapon()
     {
         has_weapon = false;
@@ -63,7 +66,11 @@ public class SwordHandle : WeaponHandle
     }
     public override void on_press()
     {
-        if(has_weapon) anim.SetTrigger("Attack!");
+        if (has_weapon)
+        {
+            anim.SetTrigger("Attack!");
+            FMODUnity.RuntimeManager.PlayOneShot(SwingEvent, transform.position);
+        }
     }
     public override void on_release()
     {
