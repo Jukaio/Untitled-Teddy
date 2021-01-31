@@ -10,6 +10,10 @@ float speed = 5f;
 float height = 0.5f;
 
     // Update is called once per frame
+    private void Start()
+    {
+        transform.position += Vector3.up;
+    }
     void Update()
     {
          transform.Rotate( new Vector3(0.25f, 1, 0.5f), Space.Self );
