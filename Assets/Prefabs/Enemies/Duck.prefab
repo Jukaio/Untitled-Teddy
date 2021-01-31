@@ -30,7 +30,12 @@ GameObject:
   - component: {fileID: 8757413245166632982}
   - component: {fileID: 8853302616637974528}
   - component: {fileID: 7651823369298985623}
-  m_Layer: 0
+  - component: {fileID: 5808889638647613869}
+  - component: {fileID: 3812381201429671888}
+  - component: {fileID: 6224161465652632243}
+  - component: {fileID: 6932750311985591829}
+  - component: {fileID: 2647404053429999437}
+  m_Layer: 7
   m_Name: Duck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,14 +79,83 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5123155720515252381}
   serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
+  m_Mass: 0.025
+  m_Drag: 7.5
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
+  m_Constraints: 116
+  m_CollisionDetection: 1
+--- !u!114 &5808889638647613869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5123155720515252381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1df6843a91548e74d999bb9df3f51685, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  max_health: 20
+--- !u!114 &3812381201429671888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5123155720515252381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53e4766d5fd8b0048a231bf5a4d99904, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6224161465652632243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5123155720515252381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29ee73e17bd6426499910f18577d063c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6932750311985591829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5123155720515252381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39cc2dc017c8c9c42be33d154ee7e4e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthbar: {fileID: 0}
+  max_health: 100
+  regenerated_health: 10
+  combat_cooldown: 0
+  regeneration_cooldown: 5
+  curr_health: 0
+--- !u!136 &2647404053429999437
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5123155720515252381}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1.5
+  m_Direction: 2
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1001 &2920505122351760806
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -133,9 +207,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -1215088673186257983, guid: a61fe97c9ff568b42810fd5bc00389d5, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 635547659545568360, guid: a61fe97c9ff568b42810fd5bc00389d5, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: a61fe97c9ff568b42810fd5bc00389d5, type: 3}
       propertyPath: m_Name
       value: model
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a61fe97c9ff568b42810fd5bc00389d5, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4573940403621388067, guid: a61fe97c9ff568b42810fd5bc00389d5, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a61fe97c9ff568b42810fd5bc00389d5, type: 3}

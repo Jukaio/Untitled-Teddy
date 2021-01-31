@@ -7,7 +7,7 @@ public class Bounce : MonoBehaviour, DamageSystem.Callback
     Rigidbody rb;
     public void on_death()
     {
-
+        gameObject.SetActive(false);
     }
 
     public void on_hit(Weapon with, DamageSystem.Type how)

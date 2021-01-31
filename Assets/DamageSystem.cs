@@ -4,16 +4,22 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(Collider))]
+[RequireComponent(typeof(HealthSystem))]
 public class DamageSystem : MonoBehaviour
 {
-    [SerializeField] private int max_health;
-    private int current_health;
+    HealthSystem health;
 
     public enum Type
     {
         Collision,
         Trigger
     }
+
+    private void Awake()
+    {
+        health = GetComponent<HealthSystem>();
+    }
+
     public interface Callback
     {
         public abstract void on_hit(Weapon with, Type how);
@@ -50,8 +56,8 @@ public class DamageSystem : MonoBehaviour
     public void damage(int that)
     {
         int var = Mathf.Clamp(that, 0, int.MaxValue);
-        current_health -= that;
-        if (current_health <= 0)
+        health.change_health(-that);
+        if (health.IsDead)
             on_death();
     }
 

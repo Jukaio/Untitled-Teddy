@@ -5,14 +5,16 @@ using UnityEngine;
 public class HealthSystem : MonoBehaviour
 {
     public GameObject healthbar;
-    public int max_health = 100;
-    public int regenerated_health = 10; // HP/sec
+    [SerializeField] private int max_health = 100;
+    [SerializeField] private int regenerated_health = 10; // HP/sec
     public int combat_cooldown = 0; // health regenerates only when this is 0
     public int regeneration_cooldown = 5; // only start regenerating hp after x secs after combat
 
-    public int curr_health;
+    private int curr_health;
     float regeneration_second = 0.0f;
     float combat_second = 0.0f;
+
+    public bool IsDead{ get { return curr_health <= 0; } }
 
     // Start is called before the first frame update
     void Start()
@@ -55,7 +57,7 @@ public class HealthSystem : MonoBehaviour
             curr_health += regenerated_health;
         }
     }
-    void change_health(int value)
+    public void change_health(int value)
     {
         if(value < 0)
         {
