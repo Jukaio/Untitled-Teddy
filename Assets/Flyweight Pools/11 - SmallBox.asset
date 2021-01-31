@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67fc492c763419f4a89204a017011f66, type: 3}
+  m_Name: 11 - SmallBox
+  m_EditorClassIdentifier: 
+  items:
+  - {fileID: 159801182143013323, guid: 487bd902581374ba480bf55aee69ee6a, type: 3}
+  - {fileID: 1638226785207368812, guid: e7629ff0405bf43c8b7ece22a4a9eaf5, type: 3}
+  - {fileID: 7561097825546989792, guid: 11452352056714ac3be0773c7d7a3e22, type: 3}
+  - {fileID: 3174646759290777083, guid: 4efda6951387c4e1b9c9f010249a792e, type: 3}
+  - {fileID: 1150741314563411887, guid: c55f6b0d65aac490fbc6c32ce291c9f8, type: 3}
+  - {fileID: 2278718922279742402, guid: 622795e7c9d3e4fdb934de9b77a400c0, type: 3}
+  - {fileID: 3401280910609223580, guid: b6a4cc886233749618f2f250581ae369, type: 3}
+  - {fileID: 4634435923634318771, guid: cc81e03bda4774a7aab9b22e9a3d6d6e, type: 3}
+  - {fileID: 4488786339190828815, guid: 4b645bb3a730f48dfa25a52aa98bd4f7, type: 3}

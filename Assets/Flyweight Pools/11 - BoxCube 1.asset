@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 67fc492c763419f4a89204a017011f66, type: 3}
-  m_Name: 11 - BoxCube
+  m_Name: 11 - BoxCube 1
   m_EditorClassIdentifier: 
   items:
   - {fileID: 1551205041926264818, guid: ab96fcfadf530374195c80fd4172f9c7, type: 3}

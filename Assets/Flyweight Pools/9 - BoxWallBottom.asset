@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: 9 - BoxWallBottom
   m_EditorClassIdentifier: 
   items:
+  - {fileID: 8810046934508037604, guid: 31db438e4fef54e9387c27ad089c4585, type: 3}
+  - {fileID: 8810046934508037604, guid: 4e3042bf287fd4ab084ee96db241807f, type: 3}
   - {fileID: 8810046934508037604, guid: 3d9b8e23ad66f4d74bfb371802d427f2, type: 3}

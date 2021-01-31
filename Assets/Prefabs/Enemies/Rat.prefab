@@ -11,6 +11,10 @@ GameObject:
   - component: {fileID: 8472950842151759122}
   - component: {fileID: 5301291479526142724}
   - component: {fileID: 3500004034744678358}
+  - component: {fileID: 7239024929361106363}
+  - component: {fileID: 1032756492045773748}
+  - component: {fileID: 8659903391870998811}
+  - component: {fileID: 6568682660157291269}
   m_Layer: 0
   m_Name: Rat
   m_TagString: Untagged
@@ -63,6 +67,59 @@ CapsuleCollider:
   m_Height: 1.5
   m_Direction: 1
   m_Center: {x: 0, y: 0.8, z: -0.15}
+--- !u!114 &7239024929361106363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4962358382121155147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39cc2dc017c8c9c42be33d154ee7e4e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthbar: {fileID: 0}
+  max_health: 100
+  regenerated_health: 10
+  combat_cooldown: 0
+  regeneration_cooldown: 5
+--- !u!114 &1032756492045773748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4962358382121155147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1df6843a91548e74d999bb9df3f51685, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8659903391870998811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4962358382121155147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29ee73e17bd6426499910f18577d063c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6568682660157291269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4962358382121155147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53e4766d5fd8b0048a231bf5a4d99904, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &9165064149667558566
 Animator:
   serializedVersion: 3
