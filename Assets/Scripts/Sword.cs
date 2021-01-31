@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class Sword : Weapon
 {
-    [SerializeField] Animator anim;
     public override void attack()
     {
-        Debug.Log("ATTACK");
-        anim.Play("Slash");
+
     }
 
     public override int get_damage()
@@ -23,6 +21,6 @@ public class Sword : Weapon
 
     public override void on_trigger_hit(Collision other)
     {
-
+        
     }
 }

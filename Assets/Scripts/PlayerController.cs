@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float speed = 2.0f;
     [SerializeField] RoomGenerator RG;
 
+    [SerializeField] private Animator anim;
+
     private const int CURRENT = 0;
     private const int PREVIOUS = 1;
 
@@ -44,6 +46,8 @@ public class PlayerController : MonoBehaviour
     {
         var use = movement_axes[CURRENT];
         use.Normalize();
+
+        anim.SetFloat("velocity", use.magnitude);
         rb.velocity = use * speed;
         transform.localRotation = Quaternion.Euler(0, view_angle, 0);
     }

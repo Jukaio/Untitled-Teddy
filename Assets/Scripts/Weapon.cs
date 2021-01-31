@@ -4,6 +4,9 @@ using UnityEngine;
 
 public abstract class Weapon : MonoBehaviour
 {
+    [SerializeField] GameObject holder;
+    public GameObject Holder { get { return holder; } }
+
     public abstract int get_damage();    
     public abstract void attack();
     public abstract void on_collision_hit(Collider other);

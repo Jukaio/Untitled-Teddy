@@ -5,6 +5,7 @@ using UnityEngine;
 public class SwordHandle : WeaponHandle
 {
     [SerializeField] Sword sword;
+    [SerializeField] private Animator anim;
 
     public override void on_hold()
     {
@@ -12,7 +13,7 @@ public class SwordHandle : WeaponHandle
     }
     public override void on_press()
     {
-        sword.attack();
+        anim.SetTrigger("Attack!");
     }
     public override void on_release()
     {

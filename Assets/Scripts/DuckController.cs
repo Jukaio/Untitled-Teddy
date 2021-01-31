@@ -92,9 +92,8 @@ public class DuckController : EnemyController
         Stack<Vector2Int> path;
         RoomGenerator.Room room;
         Rigidbody rb;
-
         public Chase(GameObject context)
-            : base(context, 1.0f / 30.0f, 1.0f / 15.0f)
+            : base(context, 1.0f / 45.0f, 1.0f / 15.0f)
         {
             rb = Context.GetComponent<Rigidbody>();
             var room_index = RG.world.world_to_grid(Context.transform.position);
@@ -114,9 +113,13 @@ public class DuckController : EnemyController
             var angle = Vector3.SignedAngle(from.normalized, to.normalized, Vector3.up);
 
             rb.rotation = Quaternion.Euler(0.0f, angle + 45.0f, 0.0f);
-            to.y = 0;
 
-            rb.velocity = to.normalized * 2.0f;
+            to.Normalize();
+            to.y = 0;
+            to *= 3.0f * Time.deltaTime;
+            rb.MovePosition(rb.position + to);
+
+
             draw_rect(room.grid_to_world(path.Peek(), true), 1.0f, Color.yellow);
             if(Vector3.Distance(rb.position, room.grid_to_world(path.Peek(), true)) < 0.15f)
             {

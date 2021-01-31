@@ -17,10 +17,8 @@ public class WeaponHandle : MonoBehaviour
     {
         state[PREVIOUS] = state[CURRENT];
         state[CURRENT] = Input.GetButton("Attack");
-    }
-    void FixedUpdate()
-    {
-        if(state[CURRENT] && !state[PREVIOUS])
+
+        if (state[CURRENT] && !state[PREVIOUS])
         {
             on_press();
         }
